@@ -10,23 +10,27 @@ public class CustomList {
         this.head = newHead;
     }
 
+    public boolean isEmpty() {
+        return head == null;
+    }
+
     /**
      * Adds a new node at the end of the list
      * @param newNode new node to be added
      */
     public void append(Node newNode) {
-        if (head == null)
-            head = newNode;
+        if (isEmpty())
+            this.head = newNode;
         else 
-            appendNext(head, newNode);
+            append(head, newNode);
 
     }
 
-    private void appendNext(Node node, Node nuovo){
+    private void append(Node node, Node nuovo){
         if (node.getNext() == null){
             node.setNext(nuovo);
         } else {
-            appendNext(node.getNext(), nuovo);
+            append(node.getNext(), nuovo);
         }
     }
 
@@ -51,4 +55,6 @@ public class CustomList {
 
         printNext(node.getNext());
     }
+
+
 }
