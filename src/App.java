@@ -15,5 +15,9 @@ public class App {
         list.append(n5);
 
         list.print();
+        
+        list.add(3, n3);
+
+        list.print();
     }
 }

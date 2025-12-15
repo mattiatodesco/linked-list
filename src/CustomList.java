@@ -1,5 +1,4 @@
 public class CustomList {
-    
     private Node head;
 
     public CustomList() {
@@ -54,6 +53,45 @@ public class CustomList {
         }
 
         printNext(node.getNext());
+    }
+
+    public void add (int index, Node newNode) {
+        if (index == 0){
+            newNode.setNext(head);
+            this.head = newNode;
+        } else if (index > 0 && index <= size()){
+            Node prev = get(index -1);
+            newNode.setNext(prev.getNext());
+            prev.setNext(newNode);
+        } else {
+            throw new IndexOutOfBoundsException("Invalid Position");
+        }
+
+    }
+
+    private Node getRec(Node cursor, int index) throws IndexOutOfBoundsException{
+        if (index == 0)
+            return head;
+
+        return getRec(cursor.getNext(), index-1);
+
+    }
+
+    public Node get(int index) throws IndexOutOfBoundsException{
+        //check if index is invalid
+        if (index <0 || index >= size())
+            throw new IndexOutOfBoundsException("Invalid index");
+        return getRec(head, index);
+    }
+
+    private int sizeRec(Node cursor){
+        if (cursor == null)
+            return 0;
+        return sizeRec(cursor.getNext()) +1;
+    }
+
+    public int size(){
+        return sizeRec(head);
     }
 
 
