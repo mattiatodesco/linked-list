@@ -15,8 +15,10 @@ public class App {
         list.append(n5);
 
         list.print();
+
+        Node n6 = new Node(98);
         
-        list.add(3, n3);
+        list.add(3, n6);
 
         list.print();
     }

@@ -71,7 +71,7 @@ public class CustomList {
 
     private Node getRec(Node cursor, int index) throws IndexOutOfBoundsException{
         if (index == 0)
-            return head;
+            return cursor;
 
         return getRec(cursor.getNext(), index-1);
 
