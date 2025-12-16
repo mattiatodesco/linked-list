@@ -69,6 +69,20 @@ public class CustomList {
 
     }
 
+    public void remove(int index) throws IndexOutOfBoundsException{
+        if (index == 0){
+            this.head = this.head.getNext();
+            return;
+        } else if (index > 0 && index <= size()){
+            Node prev = get(index -1);
+            prev.setNext(get(index + 1));
+        } else {
+            throw new IndexOutOfBoundsException("Invalid Position");
+        }
+
+
+    }
+
     private Node getRec(Node cursor, int index) throws IndexOutOfBoundsException{
         if (index == 0)
             return cursor;
@@ -79,8 +93,10 @@ public class CustomList {
 
     public Node get(int index) throws IndexOutOfBoundsException{
         //check if index is invalid
-        if (index <0 || index >= size())
+        if (index < -size() || index >= size())
             throw new IndexOutOfBoundsException("Invalid index");
+        if (index < 0)
+            index = size() + index;
         return getRec(head, index);
     }
 
