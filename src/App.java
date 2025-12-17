@@ -23,8 +23,11 @@ public class App {
         list.print();
 
         System.out.println("Posizione -6: " + list.get(-6).getValue());
-
+        
         list.remove(2);
+        list.print();
+
+        list.remove(n5);
         list.print();
     }
 }

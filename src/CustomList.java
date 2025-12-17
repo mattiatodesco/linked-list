@@ -69,18 +69,64 @@ public class CustomList {
 
     }
 
-    public void remove(int index) throws IndexOutOfBoundsException{
+    public Node remove(int index) throws IndexOutOfBoundsException{
+        Node toReturn;
         if (index == 0){
+            toReturn = this.head;
             this.head = this.head.getNext();
-            return;
-        } else if (index > 0 && index <= size()){
+        } else if (index > 0 && index < size()){
             Node prev = get(index -1);
-            prev.setNext(get(index + 1));
+            toReturn = prev.getNext();
+            prev.setNext(toReturn.getNext());
         } else {
             throw new IndexOutOfBoundsException("Invalid Position");
         }
+        
+        return toReturn;
 
+    }
 
+    public boolean remove (Node node) {
+        if (node == null)
+            return false;
+
+        int index = indexOf(node);
+        if (index < 0)
+            return false;
+
+        return remove(index) != null;
+    }
+
+    public int indexOf(Node n ){
+        Node cursor = head;
+        int index = 0;
+        while (cursor != null){
+            if (cursor.equals(n))
+                return index;
+            
+            cursor = cursor.getNext();
+            index++;
+        }
+
+        return -1;
+    }
+
+    public void set (int index, Node newNode) throws IndexOutOfBoundsException{
+        if (index < 0 || index >= size())
+            throw new IndexOutOfBoundsException("Invalid index");
+
+        if (index == 0){
+            newNode.setNext(head.getNext());
+            head = newNode;
+        } else {
+            Node prev = get(index -1);
+            newNode.setNext(prev.getNext().getNext());
+            prev.setNext(newNode);
+        }
+    }
+
+    public boolean contains (Node n){
+        return indexOf(n) >= 0;
     }
 
     private Node getRec(Node cursor, int index) throws IndexOutOfBoundsException{
