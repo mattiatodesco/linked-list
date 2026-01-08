@@ -27,7 +27,14 @@ public class App {
         list.remove(2);
         list.print();
 
+        System.out.println("n5 presente? " + list.contains(n5));
+
         list.remove(n5);
+        list.print();
+        
+        System.out.println("n5 presente? " + list.contains(n5));
+        
+        list.set(1, n5);
         list.print();
     }
 }

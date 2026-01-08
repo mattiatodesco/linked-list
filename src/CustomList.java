@@ -127,6 +127,11 @@ public class CustomList {
         }
     }
 
+    /**
+     * Checks if the list contains the given node
+     * @param n node to be checked
+     * @return true if the node is in the list, false otherwise
+     */
     public boolean contains (Node n){
         if (n == null)
             return false;
