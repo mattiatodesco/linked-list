@@ -114,6 +114,8 @@ public class CustomList {
     public void set (int index, Node newNode) throws IndexOutOfBoundsException{
         if (index < 0 || index >= size())
             throw new IndexOutOfBoundsException("Invalid index");
+        if (newNode == null)
+            return;
 
         if (index == 0){
             newNode.setNext(head.getNext());
@@ -126,7 +128,24 @@ public class CustomList {
     }
 
     public boolean contains (Node n){
+        if (n == null)
+            return false;
         return indexOf(n) >= 0;
+    }
+
+    public boolean containsRec(Node n){
+        return containsRec(head, n);
+    }
+    
+    private boolean containsRec(Node cursor, Node n){
+        if (cursor == null)
+            return false;
+        else if (cursor.equals(n))
+            return true;
+        else{
+            return containsRec(cursor.getNext(), n);
+        }
+        
     }
 
     private Node getRec(Node cursor, int index) throws IndexOutOfBoundsException{
